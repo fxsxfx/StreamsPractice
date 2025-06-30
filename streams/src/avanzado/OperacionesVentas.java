@@ -1,10 +1,16 @@
 package avanzado;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.AbstractMap;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
+
+import avanzado.OperacionesVentas.Item;
 
 public class OperacionesVentas
 {
@@ -32,9 +38,14 @@ public class OperacionesVentas
 		Map<Object, Double> totalPedido = pedidos.stream().flatMap(pedido -> pedido.items.stream()
 				.map(item -> new AbstractMap.SimpleEntry<>(pedido.id(), item.precioUnitario())))
 				.collect(Collectors.groupingBy(Map.Entry::getKey , Collectors.summingDouble(Map.Entry::getValue)));
+		
+		Optional<Item> mejorProduct = pedidos.stream().flatMap(pedido -> pedido.items.stream()).collect(Collectors.maxBy(Comparator.comparing(Item::precioUnitario)));
 				
+		List<Pedido> pedidosRecientes = pedidos.stream().filter(f -> ChronoUnit.MONTHS.between(f.fecha.toLocalDate(), LocalDate.now())<1).toList();
 		
 		System.out.println(totalPedido);
+		System.out.println(mejorProduct.get().productoId);
+		System.out.println(pedidosRecientes);
 		
 		
 		
