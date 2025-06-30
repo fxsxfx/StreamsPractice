@@ -9,7 +9,7 @@ Aplicar y reforzar el conocimiento de las operaciones funcionales que ofrece la 
 ## 🛠️ Tecnologías utilizadas
 
 - Java 21 (compatible con versiones desde Java 8)
-- IDE: IntelliJ IDEA / Eclipse / VS Code (cualquiera puede usarse)
+- IDE: Eclipse
 - JDK instalado localmente
 
 ## 🚀 Cómo ejecutar
